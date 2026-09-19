@@ -1,223 +1,172 @@
 import React from "react";
+import { Typography, Button, Box, Container, Stack, Chip, Card } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Chip,
-  Container,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
-import {
-  ArrowForward,
-  AutoAwesome,
-  Psychology,
-} from "@mui/icons-material";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 
-function HeroSection() {
+const HeroSection = () => {
   const navigate = useNavigate();
 
   return (
     <Box
       sx={{
-        position: "relative",
-        overflow: "hidden",
-        minHeight: "100vh",
+        width: "100%",
+        minHeight: "85vh",
         display: "flex",
         alignItems: "center",
-        pt: { xs: 12, md: 16 },
-        pb: { xs: 8, md: 10 },
+        justifyContent: "center",
+        position: "relative",
+        py: { xs: 8, md: 12 },
+        px: { xs: 2, sm: 4 },
+        background: "radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.15) 0%, rgba(10, 14, 26, 0) 70%)",
       }}
     >
-      {/* Background Blur */}
-
-      <Box
-        sx={{
-          position: "absolute",
-          width: 450,
-          height: 450,
-          borderRadius: "50%",
-          background: "#2563EB",
-          filter: "blur(120px)",
-          opacity: 0.12,
-          top: -180,
-          left: -150,
-        }}
-      />
-
-      <Box
-        sx={{
-          position: "absolute",
-          width: 420,
-          height: 420,
-          borderRadius: "50%",
-          background: "#06B6D4",
-          filter: "blur(120px)",
-          opacity: 0.12,
-          bottom: -150,
-          right: -120,
-        }}
-      />
-
       <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={8}
+        <Stack
+          spacing={4}
           alignItems="center"
+          textAlign="center"
+          sx={{ mx: "auto", maxWidth: 900 }}
         >
-          {/* LEFT */}
+          {/* Top AI Badge */}
+          <Chip
+            icon={<AutoAwesomeIcon sx={{ fontSize: "16px !important", color: "#60a5fa" }} />}
+            label="Next-Gen AI-Powered Career Platform"
+            sx={{
+              bgcolor: "rgba(59, 130, 246, 0.1)",
+              color: "#93c5fd",
+              border: "1px solid rgba(59, 130, 246, 0.25)",
+              px: 2,
+              py: 0.8,
+              fontSize: "0.875rem",
+              fontWeight: 500,
+            }}
+          />
 
-          <Grid
-            item
-            xs={12}
-            md={6}
+          {/* Centered Headline */}
+          <Typography
+            variant="h1"
+            sx={{
+              fontWeight: 900,
+              fontSize: { xs: "2.25rem", sm: "3.5rem", md: "4.25rem" },
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
+              background: "linear-gradient(180deg, #ffffff 0%, #94a3b8 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
           >
-            <Chip
-              icon={<AutoAwesome />}
-              label="AI Powered Career Platform"
-              sx={{
-                mb: 4,
-                px: 1,
-                py: 2.6,
-                fontWeight: 700,
-              }}
-            />
+            Empowering Your Academic & Career Journey
+          </Typography>
 
-            <Typography
+          {/* Subtitle */}
+          <Typography
+            variant="h6"
+            sx={{
+              color: "#94a3b8",
+              fontWeight: 400,
+              fontSize: { xs: "1rem", sm: "1.2rem" },
+              maxWidth: "700px",
+              lineHeight: 1.6,
+            }}
+          >
+            Find top global opportunities, optimize your resume with AI precision, and prepare for technical interviews seamlessly.
+          </Typography>
+
+          {/* Centered CTA Action Buttons */}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2.5}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ pt: 1, width: "100%" }}
+          >
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => navigate("/register")}
+              endIcon={<ArrowForwardIcon />}
               sx={{
-                fontWeight: 900,
-                lineHeight: 1.05,
-                fontSize: {
-                  xs: "3rem",
-                  sm: "4rem",
-                  md: "5.4rem",
+                bgcolor: "#2563eb",
+                color: "#ffffff",
+                px: 4,
+                py: 1.75,
+                borderRadius: "12px",
+                fontSize: "1rem",
+                fontWeight: 600,
+                textTransform: "none",
+                boxShadow: "0 4px 20px rgba(37, 99, 235, 0.4)",
+                "&:hover": {
+                  bgcolor: "#1d4ed8",
+                  boxShadow: "0 6px 24px rgba(37, 99, 235, 0.6)",
                 },
               }}
             >
-              Land Your
+              Get Started Free
+            </Button>
 
-              <Box
-                component="span"
-                sx={{
-                  display: "block",
-                  background:
-                    "linear-gradient(90deg,#2563EB,#7C3AED)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Dream Job
-              </Box>
-
-              with AI
-            </Typography>
-
-            <Typography
+            <Button
+              variant="outlined"
+              size="large"
+              onClick={() => navigate("/employer/login")}
+              startIcon={<BusinessCenterIcon />}
               sx={{
-                mt: 4,
-                mb: 5,
-                fontSize: "1.15rem",
-                color: "text.secondary",
-                lineHeight: 1.9,
-                maxWidth: 560,
+                color: "#93c5fd",
+                borderColor: "rgba(59, 130, 246, 0.4)",
+                px: 3.5,
+                py: 1.75,
+                borderRadius: "12px",
+                fontSize: "1rem",
+                fontWeight: 500,
+                textTransform: "none",
+                "&:hover": {
+                  borderColor: "#3b82f6",
+                  bgcolor: "rgba(59, 130, 246, 0.1)",
+                },
               }}
             >
-              ElevateHire uses Artificial Intelligence to analyze resumes,
-              improve ATS scores, generate cover letters, prepare you for
-              interviews, and help you secure your dream career faster than
-              ever.
-            </Typography>
+              For Employers
+            </Button>
+          </Stack>
 
-            <Stack
-              direction={{
-                xs: "column",
-                sm: "row",
-              }}
-              spacing={2}
-            >
-              <Button
-                variant="contained"
-                size="large"
-                endIcon={<ArrowForward />}
-                onClick={() => navigate("/register")}
-                sx={{
-                  borderRadius: 3,
-                  px: 5,
-                  py: 1.7,
-                  fontWeight: 700,
-                }}
-              >
-                Get Started
-              </Button>
-
-              <Button
-                variant="outlined"
-                size="large"
-                onClick={() => navigate("/login")}
-                sx={{
-                  borderRadius: 3,
-                  px: 5,
-                  py: 1.7,
-                }}
-              >
-                Login
-              </Button>
-            </Stack>
-          </Grid>
-
-          {/* RIGHT */}
-
-          <Grid
-            item
-            xs={12}
-            md={6}
+          {/* Symmetrical Feature Badges/Metrics */}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={3}
+            justifyContent="center"
+            sx={{ pt: 4, width: "100%" }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Box
+            {[
+              { title: "AI Resume Match", desc: "Instant Score & Feedback" },
+              { title: "Global Opps", desc: "Jobs & Higher Studies" },
+              { title: "Mock Interviews", desc: "Real-time AI Audio Prep" },
+            ].map((stat, index) => (
+              <Card
+                key={index}
                 sx={{
-                  width: {
-                    xs: 240,
-                    sm: 300,
-                    md: 380,
-                  },
-                  height: {
-                    xs: 240,
-                    sm: 300,
-                    md: 380,
-                  },
-                  borderRadius: "50%",
-                  background:
-                    "linear-gradient(135deg,#2563EB,#06B6D4)",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxShadow:
-                    "0 25px 60px rgba(37,99,235,.25)",
+                  flex: 1,
+                  bgcolor: "rgba(15, 23, 42, 0.6)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  p: 2.5,
+                  borderRadius: "14px",
+                  textAlign: "center",
                 }}
               >
-                <Psychology
-                  sx={{
-                    color: "#fff",
-                    fontSize: {
-                      xs: 90,
-                      sm: 120,
-                      md: 150,
-                    },
-                  }}
-                />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
+                <Typography variant="subtitle1" fontWeight={700} color="#f8fafc">
+                  {stat.title}
+                </Typography>
+                <Typography variant="body2" color="#64748b" sx={{ mt: 0.5 }}>
+                  {stat.desc}
+                </Typography>
+              </Card>
+            ))}
+          </Stack>
+        </Stack>
       </Container>
     </Box>
   );
-}
+};
 
 export default HeroSection;

@@ -1,15 +1,16 @@
 import React from "react";
 import {
   Box,
-  Grid,
   Paper,
   Stack,
   Typography,
   alpha,
   useTheme,
+  Container,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import CheckIcon from "@mui/icons-material/Check";
 
-import HomeSection from "./layout/HomeSection";
 import SectionHeader from "./layout/SectionHeader";
 
 const comparison = [
@@ -22,20 +23,20 @@ const comparison = [
     elevate: "ATS Optimization",
   },
   {
-    traditional: "Hours of Resume Editing",
-    elevate: "AI Resume Improvement",
+    traditional: "Hours of Manual Formatting",
+    elevate: "Instant AI Improvement",
   },
   {
-    traditional: "Random Job Search",
+    traditional: "Random Job Searches",
     elevate: "Smart Job Matching",
   },
   {
-    traditional: "No Interview Practice",
+    traditional: "No Mock Practice",
     elevate: "AI Interview Preparation",
   },
   {
-    traditional: "No Career Guidance",
-    elevate: "Career Growth Roadmap",
+    traditional: "Unclear Career Direction",
+    elevate: "Structured Growth Roadmap",
   },
 ];
 
@@ -43,89 +44,150 @@ function WhyChooseSection() {
   const theme = useTheme();
 
   return (
-    <HomeSection>
-      <SectionHeader
-        title="Why Choose ElevateHire?"
-        subtitle="Everything you need to launch your career inside one intelligent platform."
-      />
+    <Box id="why-choose" component="section" sx={{ py: { xs: 8, md: 10 }, width: "100%" }}>
+      <Container maxWidth="lg">
+        <SectionHeader
+          title="Why Choose ElevateHire?"
+          subtitle="Everything you need to launch your career inside one intelligent platform."
+        />
 
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={6}>
+        {/* Equal 2-Column CSS Grid centered within container */}
+        <Box
+          sx={{
+            mt: 5,
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              md: "repeat(2, 1fr)",
+            },
+            gap: 4,
+            justifyContent: "center",
+            alignItems: "stretch",
+            maxWidth: 1000,
+            mx: "auto",
+            width: "100%",
+          }}
+        >
+          {/* Traditional Box */}
           <Paper
             elevation={0}
             sx={{
-              p: 5,
-              borderRadius: 6,
+              p: { xs: 3, sm: 4 },
+              borderRadius: "20px",
               height: "100%",
-              border: `1px solid ${alpha(
-                theme.palette.error.main,
-                0.15
-              )}`,
+              bgcolor: "rgba(15, 23, 42, 0.5)",
+              backdropFilter: "blur(12px)",
+              border: `1px solid ${alpha(theme.palette.error.main, 0.25)}`,
+              boxSizing: "border-box",
             }}
           >
             <Typography
-              variant="h4"
+              variant="h5"
               fontWeight={700}
-              mb={4}
+              mb={3}
               textAlign="center"
+              color="#f87171"
             >
-              Traditional
+              Traditional Process
             </Typography>
 
-            <Stack spacing={3}>
+            <Stack spacing={2.5}>
               {comparison.map((item) => (
-                <Typography
+                <Stack
                   key={item.traditional}
-                  sx={{
-                    fontSize: "1.08rem",
-                    lineHeight: 1.8,
-                  }}
+                  direction="row"
+                  spacing={2}
+                  alignItems="center"
                 >
-                  ❌ {item.traditional}
-                </Typography>
+                  <Box
+                    sx={{
+                      minWidth: 28,
+                      height: 28,
+                      borderRadius: "50%",
+                      bgcolor: "rgba(239, 68, 68, 0.15)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#ef4444",
+                    }}
+                  >
+                    <CloseIcon sx={{ fontSize: 18 }} />
+                  </Box>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: "#94a3b8", fontWeight: 500 }}
+                  >
+                    {item.traditional}
+                  </Typography>
+                </Stack>
               ))}
             </Stack>
           </Paper>
-        </Grid>
 
-        <Grid item xs={12} md={6}>
+          {/* ElevateHire Box */}
           <Paper
             elevation={0}
             sx={{
-              p: 5,
-              borderRadius: 6,
+              p: { xs: 3, sm: 4 },
+              borderRadius: "20px",
               height: "100%",
               background:
-                "linear-gradient(135deg,#2563EB,#7C3AED)",
-              color: "#fff",
+                "linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, rgba(124, 58, 237, 0.25) 100%)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(59, 130, 246, 0.4)",
+              boxShadow: "0 12px 32px rgba(37, 99, 235, 0.2)",
+              boxSizing: "border-box",
             }}
           >
             <Typography
-              variant="h4"
-              fontWeight={700}
-              mb={4}
+              variant="h5"
+              fontWeight={800}
+              mb={3}
               textAlign="center"
+              sx={{
+                background: "linear-gradient(135deg, #60a5fa 0%, #c084fc 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
             >
-              ElevateHire
+              ElevateHire Experience
             </Typography>
 
-            <Stack spacing={3}>
+            <Stack spacing={2.5}>
               {comparison.map((item) => (
-                <Typography
+                <Stack
                   key={item.elevate}
-                  sx={{
-                    fontSize: "1.08rem",
-                    lineHeight: 1.8,
-                  }}
+                  direction="row"
+                  spacing={2}
+                  alignItems="center"
                 >
-                  ✅ {item.elevate}
-                </Typography>
+                  <Box
+                    sx={{
+                      minWidth: 28,
+                      height: 28,
+                      borderRadius: "50%",
+                      bgcolor: "rgba(34, 197, 94, 0.2)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#4ade80",
+                    }}
+                  >
+                    <CheckIcon sx={{ fontSize: 18 }} />
+                  </Box>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: "#f8fafc", fontWeight: 600 }}
+                  >
+                    {item.elevate}
+                  </Typography>
+                </Stack>
               ))}
             </Stack>
           </Paper>
-        </Grid>
-      </Grid>
-    </HomeSection>
+        </Box>
+      </Container>
+    </Box>
   );
 }
 

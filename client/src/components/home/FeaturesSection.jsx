@@ -1,11 +1,11 @@
 import React from "react";
 import {
   Box,
-  Grid,
   Paper,
   Typography,
   alpha,
   useTheme,
+  Container,
 } from "@mui/material";
 
 import {
@@ -22,40 +22,40 @@ import SectionHeader from "./layout/SectionHeader";
 
 const features = [
   {
-    icon: <Description sx={{ fontSize: 36 }} />,
+    icon: <Description sx={{ fontSize: 28 }} />,
     title: "Resume Analysis",
     description:
-      "Receive detailed AI-powered insights into your resume and identify improvement opportunities.",
+      "Receive detailed AI-powered insights into your resume and identify key improvement opportunities.",
   },
   {
-    icon: <TrendingUp sx={{ fontSize: 36 }} />,
+    icon: <TrendingUp sx={{ fontSize: 28 }} />,
     title: "ATS Optimization",
     description:
-      "Increase your ATS score with intelligent keyword and formatting suggestions.",
+      "Increase your ATS score with intelligent keyword and formatting suggestions tailored to job specs.",
   },
   {
-    icon: <Psychology sx={{ fontSize: 36 }} />,
+    icon: <Psychology sx={{ fontSize: 28 }} />,
     title: "AI Interview Prep",
     description:
-      "Practice technical and HR interviews using realistic AI-generated questions.",
+      "Practice technical and HR interviews using realistic, role-specific AI-generated questions.",
   },
   {
-    icon: <Work sx={{ fontSize: 36 }} />,
+    icon: <Work sx={{ fontSize: 28 }} />,
     title: "Smart Job Matching",
     description:
-      "Discover jobs tailored to your skills and career goals.",
+      "Discover active tech and business roles matched precisely to your experience level and skills.",
   },
   {
-    icon: <School sx={{ fontSize: 36 }} />,
+    icon: <School sx={{ fontSize: 28 }} />,
     title: "Career Guidance",
     description:
-      "Personalized learning paths to accelerate your professional growth.",
+      "Follow personalized learning roadmaps to accelerate your professional growth.",
   },
   {
-    icon: <AutoAwesome sx={{ fontSize: 36 }} />,
+    icon: <AutoAwesome sx={{ fontSize: 28 }} />,
     title: "AI Cover Letter",
     description:
-      "Generate professional cover letters in seconds.",
+      "Generate custom, high-converting cover letters in seconds with advanced AI.",
   },
 ];
 
@@ -63,82 +63,97 @@ function FeaturesSection() {
   const theme = useTheme();
 
   return (
-    <HomeSection>
-      <SectionHeader
-        title="Powerful Features"
-        subtitle="Everything you need to launch your career with confidence."
-      />
+    <HomeSection id="features" sx={{ py: { xs: 8, md: 10 } }}>
+      <Container maxWidth="lg">
+        <SectionHeader
+          title="Powerful Features"
+          subtitle="Everything you need to launch your career with confidence."
+        />
 
-      <Grid container spacing={4}>
-        {features.map((feature) => (
-          <Grid
-            item
-            xs={12}
-            md={6}
-            lg={4}
-            key={feature.title}
-            sx={{ display: "flex" }}
-          >
+        {/* Responsive CSS Grid for equal sizing and multi-column centering */}
+        <Box
+          sx={{
+            mt: 4,
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+            },
+            gap: 3,
+            justifyContent: "center",
+            alignItems: "stretch",
+            width: "100%",
+          }}
+        >
+          {features.map((feature) => (
             <Paper
+              key={feature.title}
               elevation={0}
               sx={{
-                width: "100%",
-                borderRadius: 6,
-                p: 5,
+                borderRadius: "16px",
+                p: { xs: 3, sm: 3.5 },
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
-                border: `1px solid ${alpha(
-                  theme.palette.primary.main,
-                  0.08
-                )}`,
-                transition: "0.3s",
+                bgcolor: "rgba(15, 23, 42, 0.6)",
+                backdropFilter: "blur(12px)",
+                border: `1px solid ${alpha(theme.palette.primary.main, 0.18)}`,
+                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                boxSizing: "border-box",
 
                 "&:hover": {
-                  transform: "translateY(-8px)",
-                  boxShadow: theme.shadows[8],
+                  transform: "translateY(-6px)",
+                  borderColor: alpha(theme.palette.primary.main, 0.45),
+                  boxShadow: "0 12px 30px rgba(37, 99, 235, 0.2)",
+                  bgcolor: "rgba(15, 23, 42, 0.8)",
                 },
               }}
             >
               <Box
                 sx={{
-                  width: 72,
-                  height: 72,
-                  borderRadius: 3,
+                  width: 52,
+                  height: 52,
+                  borderRadius: "12px",
                   background:
-                    "linear-gradient(135deg,#2563EB,#7C3AED)",
+                    "linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)",
                   color: "#fff",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  mb: 4,
+                  mb: 2.5,
+                  boxShadow: "0 6px 16px rgba(37, 99, 235, 0.35)",
                 }}
               >
                 {feature.icon}
               </Box>
 
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   fontWeight: 700,
-                  mb: 2,
+                  mb: 1,
+                  color: "#f8fafc",
+                  fontSize: "1.1rem",
                 }}
               >
                 {feature.title}
               </Typography>
 
               <Typography
-                color="text.secondary"
+                variant="body2"
                 sx={{
-                  lineHeight: 1.9,
+                  color: "#94a3b8",
+                  lineHeight: 1.6,
+                  fontSize: "0.925rem",
                 }}
               >
                 {feature.description}
               </Typography>
             </Paper>
-          </Grid>
-        ))}
-      </Grid>
+          ))}
+        </Box>
+      </Container>
     </HomeSection>
   );
 }

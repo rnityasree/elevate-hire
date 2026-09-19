@@ -1,104 +1,35 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Stack,
-  Typography,
-} from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box, Typography, Button, Container } from "@mui/material";
 
-import HomeSection from "./layout/HomeSection";
-
-function CTASection() {
-  const navigate = useNavigate();
-
+const CTASection = () => {
   return (
-    <HomeSection>
+    <Container maxWidth="md" sx={{ py: 8, textAlign: "center" }}>
+      <Typography variant="h4" fontWeight="bold" gutterBottom>
+        Ready to Elevate Your Career?
+      </Typography>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
+        Discover international Master's opportunities, optimize your resume, and prepare for interviews.
+      </Typography>
+      
+      {/* Fixed: Moved justifyContent and alignItems into sx */}
       <Box
         sx={{
-          maxWidth: 1100,
-          mx: "auto",
-          borderRadius: 6,
-          px: { xs: 4, md: 10 },
-          py: { xs: 7, md: 9 },
-          textAlign: "center",
-          background:
-            "linear-gradient(135deg,#2563EB,#7C3AED)",
-          color: "#fff",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 2,
+          flexWrap: "wrap",
         }}
       >
-        <Typography
-          variant="h3"
-          fontWeight={800}
-          mb={3}
-        >
-          Ready to Build Your Dream Career?
-        </Typography>
-
-        <Typography
-          sx={{
-            maxWidth: 720,
-            mx: "auto",
-            mb: 5,
-            lineHeight: 1.9,
-            fontSize: "1.1rem",
-            opacity: 0.95,
-          }}
-        >
-          Join ElevateHire today and use AI-powered resume analysis,
-          ATS optimization, interview preparation and smart career
-          guidance to land your next opportunity.
-        </Typography>
-
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={2}
-          justifyContent="center"
-        >
-          <Button
-            variant="contained"
-            endIcon={<ArrowForwardIcon />}
-            onClick={() => navigate("/register")}
-            sx={{
-              bgcolor: "#fff",
-              color: "primary.main",
-              px: 5,
-              py: 1.6,
-              borderRadius: 3,
-              fontWeight: 700,
-              minWidth: 220,
-              "&:hover": {
-                bgcolor: "#f5f5f5",
-              },
-            }}
-          >
-            Get Started
-          </Button>
-
-          <Button
-            variant="outlined"
-            onClick={() => navigate("/login")}
-            sx={{
-              borderColor: "#fff",
-              color: "#fff",
-              px: 5,
-              py: 1.6,
-              borderRadius: 3,
-              fontWeight: 700,
-              minWidth: 220,
-              "&:hover": {
-                borderColor: "#fff",
-                bgcolor: "rgba(255,255,255,.08)",
-              },
-            }}
-          >
-            Login
-          </Button>
-        </Stack>
+        <Button variant="contained" size="large" href="/register">
+          Get Started Free
+        </Button>
+        <Button variant="outlined" size="large" href="/abroad">
+          Explore Abroad Studies
+        </Button>
       </Box>
-    </HomeSection>
+    </Container>
   );
-}
+};
 
 export default CTASection;

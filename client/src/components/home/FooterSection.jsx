@@ -1,122 +1,187 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Container,
-  Divider,
-  Grid,
-  Link,
-  Stack,
   Typography,
+  Stack,
+  Divider,
+  alpha,
+  useTheme,
+  Link as MuiLink,
 } from "@mui/material";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 function FooterSection() {
+  const theme = useTheme();
+
   return (
     <Box
       component="footer"
       sx={{
-        mt: 6,
-        py: 8,
-        borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+        width: "100%",
+        pt: { xs: 8, md: 10 },
+        pb: 4,
+        borderTop: `1px solid ${alpha(theme.palette.primary.main, 0.15)}`,
+        background:
+          "linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.8) 100%)",
       }}
     >
       <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={5}
-          justifyContent="space-between"
+        {/* Main Footer Layout - 3 Symmetrical Centered Columns */}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "2fr 1fr 1fr",
+            },
+            gap: { xs: 4, md: 6 },
+            justifyContent: "center",
+            alignItems: "start",
+            mb: 6,
+          }}
         >
-          <Grid item xs={12} md={4}>
-            <Stack
-              direction="row"
-              spacing={1.5}
-              alignItems="center"
-              mb={3}
-            >
-              <AutoAwesomeIcon
-                color="primary"
-                sx={{ fontSize: 32 }}
-              />
-
+          {/* Brand Info Column */}
+          <Box sx={{ maxWidth: 360 }}>
+            <Stack direction="row" spacing={1.5} alignItems="center" mb={2}>
+              <Box
+                sx={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "10px",
+                  background:
+                    "linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "0 4px 12px rgba(37, 99, 235, 0.3)",
+                }}
+              >
+                <AutoAwesomeIcon sx={{ color: "#fff", fontSize: 20 }} />
+              </Box>
               <Typography
-                variant="h5"
+                variant="h6"
                 fontWeight={800}
+                sx={{
+                  color: "#f8fafc",
+                  letterSpacing: "-0.5px",
+                }}
               >
                 ElevateHire
               </Typography>
             </Stack>
 
             <Typography
-              color="text.secondary"
-              sx={{
-                lineHeight: 1.9,
-                maxWidth: 340,
-              }}
+              variant="body2"
+              sx={{ color: "#94a3b8", lineHeight: 1.7, fontSize: "0.9rem" }}
             >
-              AI-powered career platform helping students and
-              professionals build stronger resumes, prepare for
-              interviews and discover better career opportunities.
+              AI-powered career platform helping students and professionals build
+              stronger resumes, prepare for interviews, and land better career
+              opportunities.
             </Typography>
-          </Grid>
+          </Box>
 
-          <Grid item xs={6} md={3}>
+          {/* Quick Links Column */}
+          <Box>
             <Typography
-              variant="h6"
+              variant="subtitle1"
               fontWeight={700}
-              mb={3}
+              color="#f8fafc"
+              mb={2.5}
             >
               Quick Links
             </Typography>
-
-            <Stack spacing={2}>
-              <Link component={RouterLink} to="/" underline="hover">
-                Home
-              </Link>
-
-              <Link component={RouterLink} to="/login" underline="hover">
-                Login
-              </Link>
-
-              <Link component={RouterLink} to="/register" underline="hover">
-                Register
-              </Link>
+            <Stack spacing={1.5}>
+              {["Home", "Login", "Register", "Employer Portal"].map((item) => (
+                <MuiLink
+                  key={item}
+                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  underline="none"
+                  sx={{
+                    color: "#94a3b8",
+                    fontSize: "0.9rem",
+                    transition: "all 0.2s ease",
+                    "&:hover": {
+                      color: "#60a5fa",
+                      transform: "translateX(3px)",
+                    },
+                  }}
+                >
+                  {item}
+                </MuiLink>
+              ))}
             </Stack>
-          </Grid>
+          </Box>
 
-          <Grid item xs={6} md={3}>
+          {/* Contact Info Column */}
+          <Box>
             <Typography
-              variant="h6"
+              variant="subtitle1"
               fontWeight={700}
-              mb={3}
+              color="#f8fafc"
+              mb={2.5}
             >
               Contact
             </Typography>
-
-            <Stack spacing={2}>
-              <Typography color="text.secondary">
+            <Stack spacing={1.5}>
+              <Typography variant="body2" color="#94a3b8" fontSize="0.9rem">
                 support@elevatehire.com
               </Typography>
-
-              <Typography color="text.secondary">
+              <Typography variant="body2" color="#94a3b8" fontSize="0.9rem">
                 Bengaluru, India
               </Typography>
-
-              <Typography color="text.secondary">
+              <Typography variant="body2" color="#94a3b8" fontSize="0.9rem">
                 AI Career Platform
               </Typography>
             </Stack>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
 
-        <Divider sx={{ my: 5 }} />
+        <Divider
+          sx={{
+            borderColor: alpha(theme.palette.divider, 0.1),
+            mb: 4,
+          }}
+        />
 
-        <Typography
-          textAlign="center"
-          color="text.secondary"
+        {/* Centered Copyright & Bottom Bar */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 2,
+            textAlign: "center",
+          }}
         >
-          © {new Date().getFullYear()} ElevateHire. All Rights Reserved.
-        </Typography>
+          <Typography variant="body2" color="#64748b" fontSize="0.85rem">
+            © 2026 ElevateHire. All Rights Reserved.
+          </Typography>
+
+          <Stack direction="row" spacing={3}>
+            {["Privacy Policy", "Terms of Service", "Cookie Settings"].map(
+              (item) => (
+                <MuiLink
+                  key={item}
+                  href="#"
+                  underline="none"
+                  sx={{
+                    color: "#64748b",
+                    fontSize: "0.85rem",
+                    transition: "color 0.2s ease",
+                    "&:hover": {
+                      color: "#94a3b8",
+                    },
+                  }}
+                >
+                  {item}
+                </MuiLink>
+              )
+            )}
+          </Stack>
+        </Box>
       </Container>
     </Box>
   );

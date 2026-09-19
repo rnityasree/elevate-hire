@@ -28,6 +28,7 @@ function MainLayout({ children }) {
       sx={{
         display: "flex",
         height: "100vh",
+        width: "100vw",
         overflow: "hidden",
         bgcolor: "background.default",
       }}
@@ -45,11 +46,13 @@ function MainLayout({ children }) {
         sx={{
           flexGrow: 1,
           width: {
+            xs: "100%",
             md: `calc(100% - ${DRAWER_WIDTH}px)`,
           },
           display: "flex",
           flexDirection: "column",
           height: "100vh",
+          overflow: "hidden",
         }}
       >
         <Toolbar />
@@ -70,6 +73,7 @@ function MainLayout({ children }) {
             sx={{
               maxWidth: 1600,
               mx: "auto",
+              width: "100%",
             }}
           >
             {children}

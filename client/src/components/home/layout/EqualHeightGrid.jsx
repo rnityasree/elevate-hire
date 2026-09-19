@@ -1,19 +1,34 @@
-import React from "react";
-import { Grid } from "@mui/material";
+import React from 'react';
+import { Grid } from '@mui/material';
 
-function EqualHeightGrid({
-  children,
-}) {
+export default function EqualHeightGrid({ children, spacing = 4, ...props }) {
   return (
     <Grid
       container
-      spacing={4}
+      spacing={spacing}
       justifyContent="center"
       alignItems="stretch"
+      sx={{
+        width: '100%',
+        margin: 0,
+        boxSizing: 'border-box'
+      }}
+      {...props}
     >
-      {children}
+      {React.Children.map(children, (child) => (
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
+          {child}
+        </Grid>
+      ))}
     </Grid>
   );
 }
-
-export default EqualHeightGrid;

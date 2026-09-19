@@ -6,6 +6,8 @@ import {
   Box,
   Container,
   Typography,
+  alpha,
+  useTheme,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -43,81 +45,110 @@ const faqs = [
 ];
 
 function FAQSection() {
+  const theme = useTheme();
+
   return (
     <Box
+      id="faq"
+      component="section"
       sx={{
-        py: 12,
+        py: { xs: 8, md: 12 },
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
       }}
     >
       <Container maxWidth="md">
-        <Typography
-          variant="h3"
-          textAlign="center"
-          fontWeight={800}
-          mb={2}
-        >
-          Frequently Asked Questions
-        </Typography>
-
-        <Typography
-          textAlign="center"
-          color="text.secondary"
+        {/* Header Block with explicit Flex Centering */}
+        <Box
           sx={{
-            maxWidth: 720,
-            mx: "auto",
-            mb: 7,
-            lineHeight: 1.8,
-            fontSize: "1.08rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            width: "100%",
+            mb: 6,
           }}
         >
-          Everything you need to know before getting started with
-          ElevateHire.
-        </Typography>
-
-        {faqs.map((faq) => (
-          <Accordion
-            key={faq.question}
-            disableGutters
+          <Typography
+            variant="h3"
             sx={{
+              fontWeight: 800,
+              fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+              color: "#f8fafc",
+              letterSpacing: "-0.5px",
               mb: 2,
-              borderRadius: "16px !important",
-              overflow: "hidden",
-              boxShadow: 2,
-
-              "&:before": {
-                display: "none",
-              },
             }}
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              sx={{
-                px: 3,
-                py: 1,
-              }}
-            >
-              <Typography
-                fontWeight={700}
-              >
-                {faq.question}
-              </Typography>
-            </AccordionSummary>
+            Frequently Asked Questions
+          </Typography>
 
-            <AccordionDetails
+          <Typography
+            sx={{
+              color: "#94a3b8",
+              maxWidth: 640,
+              lineHeight: 1.7,
+              fontSize: "1.05rem",
+            }}
+          >
+            Everything you need to know before getting started with ElevateHire.
+          </Typography>
+        </Box>
+
+        {/* Accordions */}
+        <Box sx={{ width: "100%" }}>
+          {faqs.map((faq) => (
+            <Accordion
+              key={faq.question}
+              disableGutters
+              elevation={0}
               sx={{
-                px: 3,
-                pb: 3,
+                mb: 2,
+                borderRadius: "16px !important",
+                overflow: "hidden",
+                bgcolor: "rgba(15, 23, 42, 0.6)",
+                backdropFilter: "blur(12px)",
+                border: `1px solid ${alpha(theme.palette.primary.main, 0.18)}`,
+                color: "#f8fafc",
+                transition: "all 0.3s ease",
+
+                "&:before": {
+                  display: "none",
+                },
+                "&:hover": {
+                  borderColor: alpha(theme.palette.primary.main, 0.35),
+                },
               }}
             >
-              <Typography
-                color="text.secondary"
-                lineHeight={1.8}
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon sx={{ color: "#94a3b8" }} />}
+                sx={{
+                  px: 3,
+                  py: 1,
+                  "& .MuiAccordionSummary-content": {
+                    my: 1.5,
+                  },
+                }}
               >
-                {faq.answer}
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))}
+                <Typography fontWeight={700} fontSize="1.05rem">
+                  {faq.question}
+                </Typography>
+              </AccordionSummary>
+
+              <AccordionDetails
+                sx={{
+                  px: 3,
+                  pb: 3,
+                  pt: 0,
+                }}
+              >
+                <Typography color="#94a3b8" lineHeight={1.8}>
+                  {faq.answer}
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </Box>
       </Container>
     </Box>
   );
