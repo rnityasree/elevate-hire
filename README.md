@@ -2,6 +2,15 @@
 
 > **Intelligent Full-Stack Talent Match Engine & High-Priority Event Dispatcher**
 
+
+[![Live Application](https://img.shields.io/badge/Live_Demo-elevate--hire.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://elevate-hire-ten.vercel.app)
+[![API Status](https://img.shields.io/badge/Backend-Render_Live-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://elevate-hire.onrender.com)
+[![Database](https://img.shields.io/badge/Database-MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/atlas)
+
+> 🔗 **Live Demo:** [https://elevate-hire-ten.vercel.app](https://elevate-hire-ten.vercel.app)  
+> *(Note: The backend runs on a free cloud instance; the initial request may take ~40–50s to wake up if idle).*
+
+
 ElevateHire is an end-to-end recruitment platform engineered to bridge the gap between graduating engineering students and industry opportunities. By pairing dynamic skill-matching algorithms with an automated multi-channel dispatch pipeline, the platform eliminates communication latency and ensures candidates never miss short-notice interview drives.
 
 ---
